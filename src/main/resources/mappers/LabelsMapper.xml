@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.livesystem1.mapper.LabelsMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.livesystem1.bean.Labels">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="license" jdbcType="VARCHAR" property="license" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="out_line" jdbcType="INTEGER" property="outLine" />
+    <result column="out_line_times" jdbcType="INTEGER" property="outLineTimes" />
+    <result column="out_line_confidence" jdbcType="VARCHAR" property="outLineConfidence" />
+    <result column="out_start_time" jdbcType="VARCHAR" property="outStartTime" />
+    <result column="out_end_time" jdbcType="VARCHAR" property="outEndTime" />
+    <result column="misble" jdbcType="INTEGER" property="misble" />
+    <result column="misble_times" jdbcType="INTEGER" property="misbleTimes" />
+    <result column="misble_confidence" jdbcType="VARCHAR" property="misbleConfidence" />
+    <result column="misble_start_time" jdbcType="VARCHAR" property="misbleStartTime" />
+    <result column="misble_end_time" jdbcType="VARCHAR" property="misbleEndTime" />
+    <result column="speed" jdbcType="INTEGER" property="speed" />
+    <result column="spped_times" jdbcType="INTEGER" property="sppedTimes" />
+    <result column="speed_confidence" jdbcType="VARCHAR" property="speedConfidence" />
+    <result column="speed_start_time" jdbcType="VARCHAR" property="speedStartTime" />
+    <result column="speed_end_time" jdbcType="VARCHAR" property="speedEndTime" />
+    <result column="speed_num" jdbcType="DOUBLE" property="speedNum" />
+    <result column="change_line" jdbcType="INTEGER" property="changeLine" />
+    <result column="change_line_confidence" jdbcType="VARCHAR" property="changeLineConfidence" />
+    <result column="change_line_times" jdbcType="INTEGER" property="changeLineTimes" />
+    <result column="change_line_start_time" jdbcType="VARCHAR" property="changeLineStartTime" />
+    <result column="change_line_end_time" jdbcType="VARCHAR" property="changeLineEndTime" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from labels
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.livesystem1.bean.Labels">
+
+    insert into labels (id, license, uid, 
+      video_id, out_line, out_line_times, 
+      out_line_confidence, out_start_time, out_end_time, 
+      misble, misble_times, misble_confidence, 
+      misble_start_time, misble_end_time, speed, 
+      spped_times, speed_confidence, speed_start_time, 
+      speed_end_time, speed_num, change_line, 
+      change_line_confidence, change_line_times, change_line_start_time, 
+      change_line_end_time)
+    values (#{id,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{videoId,jdbcType=VARCHAR}, #{outLine,jdbcType=INTEGER}, #{outLineTimes,jdbcType=INTEGER},
+      #{outLineConfidence,jdbcType=VARCHAR}, #{outStartTime,jdbcType=VARCHAR}, #{outStartTime,jdbcType=VARCHAR},
+      #{misble,jdbcType=INTEGER}, #{misbleTimes,jdbcType=INTEGER}, #{misbleConfidence,jdbcType=VARCHAR},
+      #{misbleStartTime,jdbcType=VARCHAR}, #{misbleStartTime,jdbcType=VARCHAR}, #{speed,jdbcType=INTEGER},
+      #{sppedTimes,jdbcType=INTEGER}, #{speedConfidence,jdbcType=VARCHAR}, #{speedStartTime,jdbcType=VARCHAR},
+      #{speedStartTime,jdbcType=VARCHAR}, #{speedNum,jdbcType=DOUBLE}, #{changeLine,jdbcType=INTEGER},
+      #{changeLineConfidence,jdbcType=VARCHAR}, #{changeLineTimes,jdbcType=INTEGER}, #{changeLineStartTime,jdbcType=VARCHAR},
+      #{changeLineStartTime,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.livesystem1.bean.Labels">
+    update labels
+    set license = #{license,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      video_id = #{videoId,jdbcType=VARCHAR},
+      out_line = #{outLine,jdbcType=INTEGER},
+      out_line_times = #{outLineTimes,jdbcType=INTEGER},
+      out_line_confidence = #{outLineConfidence,jdbcType=VARCHAR},
+      out_start_time = #{outStartTime,jdbcType=VARCHAR},
+      out_end_time = #{outEndTime,jdbcType=VARCHAR},
+      misble = #{misble,jdbcType=INTEGER},
+      misble_times = #{misbleTimes,jdbcType=INTEGER},
+      misble_confidence = #{misbleConfidence,jdbcType=VARCHAR},
+      misble_start_time = #{misbleStartTime,jdbcType=VARCHAR},
+      misble_end_time = #{misbleEndTime,jdbcType=VARCHAR},
+      speed = #{speed,jdbcType=INTEGER},
+      spped_times = #{sppedTimes,jdbcType=INTEGER},
+      speed_confidence = #{speedConfidence,jdbcType=VARCHAR},
+      speed_start_time = #{speedStartTime,jdbcType=VARCHAR},
+      speed_end_time = #{speedEndTime,jdbcType=VARCHAR},
+      speed_num = #{speedNum,jdbcType=DOUBLE},
+      change_line = #{changeLine,jdbcType=INTEGER},
+      change_line_confidence = #{changeLineConfidence,jdbcType=VARCHAR},
+      change_line_times = #{changeLineTimes,jdbcType=INTEGER},
+      change_line_start_time = #{changeLineStartTime,jdbcType=VARCHAR},
+      change_line_end_time = #{changeLineEndTime,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, license, uid, video_id, out_line, out_line_times, out_line_confidence, 
+    out_start_time, out_end_time, misble, misble_times, misble_confidence, misble_start_time, 
+    misble_end_time, speed, spped_times, speed_confidence, speed_start_time, speed_end_time, 
+    speed_num, change_line, change_line_confidence, change_line_times, change_line_start_time, 
+    change_line_end_time
+    from labels
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, license, uid, video_id, out_line, out_line_times, out_line_confidence, 
+    out_start_time, out_end_time, misble, misble_times, misble_confidence, misble_start_time, 
+    misble_end_time, speed, spped_times, speed_confidence, speed_start_time, speed_end_time, 
+    speed_num, change_line, change_line_confidence, change_line_times, change_line_start_time, 
+    change_line_end_time
+    from labels
+  </select>
+  <select id="selectByUidAndVideoId" parameterType="list" resultMap="BaseResultMap">
+    select
+        id, license, uid, video_id, out_line, out_line_times, out_line_confidence, out_start_time, out_end_time, misble, misble_times, misble_confidence, misble_start_time, misble_end_time, speed, spped_times, speed_confidence, speed_start_time, speed_end_time, speed_num, change_line, change_line_confidence, change_line_times, change_line_start_time, change_line_end_time
+    from labels where uid = #{uid} and video_id=#{videoId}
+  </select>
+  <update id="updateByUidAndVideoId" parameterType="cn.hctech2006.livesystem1.bean.Labels">
+    update labels
+    set license = #{license,jdbcType=VARCHAR},
+        uid = #{uid,jdbcType=VARCHAR},
+        video_id = #{videoId,jdbcType=VARCHAR},
+        out_line = #{outLine,jdbcType=INTEGER},
+        out_line_times = #{outLineTimes,jdbcType=INTEGER},
+        out_line_confidence = #{outLineConfidence,jdbcType=VARCHAR},
+        out_start_time = #{outStartTime,jdbcType=VARCHAR},
+        out_end_time = #{outEndTime,jdbcType=VARCHAR},
+        misble = #{misble,jdbcType=INTEGER},
+        misble_times = #{misbleTimes,jdbcType=INTEGER},
+        misble_confidence = #{misbleConfidence,jdbcType=VARCHAR},
+        misble_start_time = #{misbleStartTime,jdbcType=VARCHAR},
+        misble_end_time = #{misbleEndTime,jdbcType=VARCHAR},
+        speed = #{speed,jdbcType=INTEGER},
+        spped_times = #{sppedTimes,jdbcType=INTEGER},
+        speed_confidence = #{speedConfidence,jdbcType=VARCHAR},
+        speed_start_time = #{speedStartTime,jdbcType=VARCHAR},
+        speed_end_time = #{speedEndTime,jdbcType=VARCHAR},
+        speed_num = #{speedNum,jdbcType=DOUBLE},
+        change_line = #{changeLine,jdbcType=INTEGER},
+        change_line_confidence = #{changeLineConfidence,jdbcType=VARCHAR},
+        change_line_times = #{changeLineTimes,jdbcType=INTEGER},
+        change_line_start_time = #{changeLineStartTime,jdbcType=VARCHAR},
+        change_line_end_time = #{changeLineEndTime,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=INTEGER} and video_id=#{videoId}
+  </update>
+  <select id="selectBySpeedAndMisbleAndOutLineAndChangLineAndVideoId" parameterType="list" resultMap="BaseResultMap">
+    select
+     id, license, uid, video_id, out_line, out_line_times, out_line_confidence, out_start_time, out_end_time, misble, misble_times, misble_confidence, misble_start_time, misble_end_time, speed, spped_times, speed_confidence, speed_start_time, speed_end_time, speed_num, change_line, change_line_confidence, change_line_times, change_line_start_time, change_line_end_time
+    from labels where 1=1 and video_id=#{videoId}
+    <if test="speed != null">
+      and speed=#{speed}
+    </if>
+    <if test="misble != null">
+      and misble = #{misble}
+    </if>
+    <if test="outLine != null" >
+      and out_line=#{outLine}
+    </if>
+    <if test="changeLine != null">
+      and change_line=#{changeLine}
+    </if>
+  </select>
+  <select id="selectLicenseByVideoId" resultType="String" parameterType="String">
+    select license from labels where video_id=#{videoId}
+  </select>
+  <select id="selectByVideoId" parameterType="String" resultMap="BaseResultMap">
+    select
+        id, license, uid, video_id, out_line, out_line_times, out_line_confidence, out_start_time, out_end_time, misble, misble_times, misble_confidence, misble_start_time, misble_end_time, speed, spped_times, speed_confidence, speed_start_time, speed_end_time, speed_num, change_line, change_line_confidence, change_line_times, change_line_start_time, change_line_end_time
+    from labels where video_id=#{videoId}
+  </select>
+</mapper>

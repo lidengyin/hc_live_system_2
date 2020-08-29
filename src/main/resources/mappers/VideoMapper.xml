@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.livesystem1.mapper.VideoMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.livesystem1.bean.Video">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="label" jdbcType="VARCHAR" property="label" />
+    <result column="car_nums" jdbcType="INTEGER" property="carNums" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.livesystem1.bean.Video">
+
+    insert into video (id, video_id, video_url, 
+      img_url, label, car_nums, 
+      flag, name)
+    values (#{id,jdbcType=INTEGER}, #{videoId,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}, 
+      #{imgUrl,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{carNums,jdbcType=INTEGER}, 
+      #{flag,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.livesystem1.bean.Video">
+    update video
+    set video_id = #{videoId,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      car_nums = #{carNums,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, video_id, video_url, img_url, label, car_nums, flag, name
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, video_id, video_url, img_url, label, car_nums, flag, name
+    from video
+  </select>
+  <select id="selectByName" parameterType="String" resultMap="BaseResultMap">
+    select
+     id, video_id, video_url, img_url, label, car_nums, flag, name
+    from video where 1=1
+    <if test="name != null">
+      and name = #{name}
+    </if>
+  </select>
+  <select id="selectByVideoId" parameterType="String" resultMap="BaseResultMap">
+    select
+        id, video_id, video_url, img_url, label, car_nums, flag, name
+    from video where video_id=#{videoId}
+  </select>
+  <update id="updateByVideoId" parameterType="cn.hctech2006.livesystem1.bean.Video">
+    update video
+    set
+        video_id=#{videoId},
+        video_url=#{videoUrl},
+        img_url=#{imgUrl}
+        where video_id=#{videoId}
+
+  </update>
+</mapper>

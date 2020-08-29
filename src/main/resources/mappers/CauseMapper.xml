@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.livesystem1.mapper.CauseMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.livesystem1.bean.Cause">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="license" jdbcType="VARCHAR" property="license" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cause
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.hctech2006.livesystem1.bean.Cause">
+    insert into cause (id, license, flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{license,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.livesystem1.bean.Cause">
+    update cause
+    set license = #{license,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, license, flag
+    from cause
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, license, flag
+    from cause where flag=0
+  </select>
+  <select id="selectLicenseByVideoId" parameterType="String" resultType="String">
+    select license from cause where flag=0
+  </select>
+</mapper>

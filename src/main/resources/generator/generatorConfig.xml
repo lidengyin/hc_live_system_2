@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--1. context属性targetRuntime设置为MyBatis3Simple避免生成Example相关的代码和方法，
+    如果需要Example设置为MyBatis3
+        2. context属性defaultModelType设为flat，目的是使每张表只生成一个实体类
+        3. 因为此处使用的数据库为MySql,所以前后分隔符都设置为‘‘’
+        4. 注释生成器commentGenerator中配置了生成数据库的注释信息，并且禁止在注释中生成日期
+        5. jdbcConnection简单的配置了要链接的数据源信息
+        6. javaModelGenerator配置生成的包名为com.hcnet2006.mango，
+        targetProject设置为src\main\java
+        7. sqlMapGenerator配置生成的Mapper.xml文件位置，这里采用XMLMapper类型。接口和XML完全分离
+        8. javaClientGenerator配置生成Mapper接口的位置，这里采用的XMLMAPPER类型，接口和XML完全分离
+        9. 最后的table使用通配符匹配数据库中所有的表，所有表都有主键自赠的id字段，
+        sqlStatement针对当前数据库配置MYSQL
+            -->
+
+    <context id="MySqlTables"
+             targetRuntime="MyBatis3Simple"
+             defaultModelType="flat">
+        <!--关键字与分隔符加反引号-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!--序列化以及字符串插件-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!--注释生成器-->
+        <commentGenerator>
+            <!--是否阻止生成注释-->
+            <property name="suppressAllComments" value="true"/>
+            <!--是否生成带注释的时间戳-->
+            <property name="suppressDate" value="true"/>
+            <!--是否添加数据表的备注信息-->
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+        <!--JDBC数据源连接-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/hc_live_system_2?serverTimezone=UTC"
+                        userId="root"
+                        password="123456"
+
+
+        >
+            <!--确定一个数据库-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+
+        </jdbcConnection>
+        <!--实体类代码生成器-->
+        <javaModelGenerator targetPackage="cn.hctech2006.livesystem1.bean" targetProject="src/main/java">
+            <!--            <property name="trimStrings" value="true"/>-->
+        </javaModelGenerator>
+        <!--MapperXML文件生成器-->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"/>
+        <!--Mappper接口生成器-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="cn.hctech2006.livesystem1.mapper" targetProject="src/main/java"/>
+        <!--数据库表配置-->
+
+        <table tableName="cause">
+            <!--数据库主键生成策略-->
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table>
+    </context>
+</generatorConfiguration>

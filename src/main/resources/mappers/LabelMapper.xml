@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hctech2006.livesystem1.mapper.LabelMapper">
+  <resultMap id="BaseResultMap" type="cn.hctech2006.livesystem1.bean.Label">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="video_id" jdbcType="VARCHAR" property="videoId" />
+    <result column="label_id" jdbcType="VARCHAR" property="labelId" />
+    <result column="time" jdbcType="VARCHAR" property="time" />
+    <result column="number" jdbcType="VARCHAR" property="number" />
+    <result column="misble" jdbcType="VARCHAR" property="misble" />
+    <result column="speed" jdbcType="VARCHAR" property="speed" />
+    <result column="line" jdbcType="VARCHAR" property="line" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from label
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="cn.hctech2006.livesystem1.bean.Label">
+
+    insert into hc_live_system.label (id, video_id, label_id,
+      time, number, misble, 
+      speed, line)
+    values (#{id,jdbcType=BIGINT}, #{videoId,jdbcType=VARCHAR}, #{labelId,jdbcType=VARCHAR}, 
+      #{time,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, #{misble,jdbcType=VARCHAR},
+      #{speed,jdbcType=VARCHAR}, #{line,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="cn.hctech2006.livesystem1.bean.Label">
+    update hc_live_system.label
+    set video_id = #{videoId,jdbcType=VARCHAR},
+      label_id = #{labelId,jdbcType=VARCHAR},
+      time = #{time,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      misble = #{misble,jdbcType=VARCHAR},
+      speed = #{speed,jdbcType=VARCHAR},
+      line = #{line,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, video_id, label_id, time, number, misble, speed, line
+    from hc_live_system.label
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, video_id, label_id, time, number, misble, speed, line
+    from hc_live_system.label
+  </select>
+  <select id="selectByVideoId" parameterType="String" resultMap="BaseResultMap">
+    select id, video_id, label_id, time, number, misble, speed, line
+    from hc_live_system.label
+    where video_id = #{videoId}
+  </select>
+</mapper>

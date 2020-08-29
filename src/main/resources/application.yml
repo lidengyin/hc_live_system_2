@@ -1,0 +1,73 @@
+server:
+  port: 8252
+spring:
+  application:
+    name: live-system
+  datasource: #数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://172.17.0.1:3306/hc_live_system_2?useUnicode=true&characterEncoding=UTF8&serverTime=Asia/Shanghai
+      filters: stat, wall, config
+      initial-size: 1
+      max-active: 100
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+      username: root
+      password: 123456
+      default-transaction-isolation: 2
+    name: druidDataSource
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 0
+      max-file-size: 1051341799
+      max-request-size: 1051341799
+      resolve-lazily: false
+  #Redis配置
+  redis:
+    database: 0 #制定链接数据库,Redis制定了编号为0-15的16个数据库
+    host: localhost #服务端所在地址
+
+    port: 6379 #服务端使用端口,默认6379
+    jedis:
+      pool:
+        max-active: -1 #制定连接池最大活跃的连接数,-1表示无限,默认是8
+        max-idle: -1 #指定连接池最大空闲连接数,-1标识无限,默认是8
+        max-wait: -1
+        #指的是当连接池耗尽时,重新获取链接需要等待的最大时间,以毫米为单位,-1标识无限等待
+        min-idle: -1 #指的是最小空闲连接数,-1标识无限,默认是8
+    timeout: 0 #链接超时时间,-1标识无限,默认是0
+  cache:
+    type: redis #制定缓存提供者
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+
+#  thymeleaf:
+#    prefix: classpath:/templates/
+#    suffix: .html
+
+mybatis:
+  mapper-locations: classpath:/mappers/*Mapper.xml
+
+#日志配置
+logging:
+  file:
+    path: classpath:/debug/spring.log
+#  level:
+#    root: DEBUG
+#    org:
+#      springframework: DEBUG
+#      mybatis: DEBUG
